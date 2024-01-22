@@ -15,7 +15,6 @@ import com.tugasmobile.appresepmakanan.realm.RealmHelper
 import java.util.ArrayList
 
 class FavoriteRecipesActivity : AppCompatActivity() {
-
     var modelRecipes: MutableList<ModelRecipes> = ArrayList()
     var helper: RealmHelper? = null
     val rvListFavorite:RecyclerView=findViewById(R.id.rvListFavorite)
