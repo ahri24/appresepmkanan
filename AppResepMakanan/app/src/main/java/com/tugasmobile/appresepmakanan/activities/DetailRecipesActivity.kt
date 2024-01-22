@@ -251,4 +251,5 @@ class DetailRecipesActivity : AppCompatActivity() {
             window.attributes = layoutParams
         }
     }
+
 }

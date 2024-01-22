@@ -27,6 +27,7 @@ import org.json.JSONObject
 import java.util.ArrayList
 
 class NewRecipesActivity : AppCompatActivity() {
+
     var modelRecipesList: MutableList<ModelRecipes> = ArrayList()
     var modelCategoriesList: MutableList<ModelCategories> = ArrayList()
     var newRecipesAdapter: NewRecipesAdapter? = null
