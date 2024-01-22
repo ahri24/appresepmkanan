@@ -3,20 +3,25 @@ package com.tugasmobile.appresepmakanan.activities
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
+import android.media.tv.TvContract.Programs
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.ProgressBar
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.tugasmobile.appresepmakanan.R
 import com.tugasmobile.appresepmakanan.adapter.CategoriesAdapter
 import com.tugasmobile.appresepmakanan.adapter.NewRecipesAdapter
 import com.tugasmobile.appresepmakanan.model.ModelCategories
 import com.tugasmobile.appresepmakanan.model.ModelRecipes
+import com.tugasmobile.appresepmakanan.networking.ApiEndpoint
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.ArrayList
@@ -28,11 +33,16 @@ class NewRecipesActivity : AppCompatActivity() {
     var newRecipesAdapter: NewRecipesAdapter? = null
     var categoriesAdapter: CategoriesAdapter? = null
     var page = 0
+    val pbListNewResep:ProgressBar=findViewById(R.id.pbListNewResep)
+    val searchRecipe:SearchView=findViewById(R.id.searchRecipe)
+    val rvCategories:RecyclerView=findViewById(R.id.rvCategories)
+    val fabFavorite:FloatingActionButton=findViewById(R.id.fabFavorite)
+    val nestedScrollView:NestedScrollView=findViewById(R.id.nestedScrollView)
+    val rvListNewResep:RecyclerView=findViewById(R.id.rvListNewResep)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_recipes)
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
                     View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
@@ -44,7 +54,6 @@ class NewRecipesActivity : AppCompatActivity() {
         }
 
         pbListNewResep.setVisibility(View.GONE)
-
         searchRecipe.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 getSearchRecipe(query)

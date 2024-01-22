@@ -58,7 +58,6 @@ class ListCategoriesActivity : AppCompatActivity() {
         rvListCategories.setLayoutManager(LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false))
         rvListCategories.setHasFixedSize(true)
         rvListCategories.setAdapter(listCategoriesAdapter)
-        rvListCategories.showShimmerAdapter()
 
         modelCategories = intent.getSerializableExtra(LIST_CATEGORIES) as ModelCategories
         if (modelCategories != null) {
